@@ -1,8 +1,8 @@
-# Multiplication Table Generator: C-Style vs. Traditional Bash ✖️
+# Multiplication Table Generator: Traditional Bash  C-Style.
 
 ## Project Overview
 
-This project showcases two different methods for generating a multiplication table using Bash scripting. It compares a modern, C-style `for` loop with a more traditional Bash `for` loop that uses the `seq` command. The goal is to demonstrate different syntactic approaches to achieve the same result, highlighting best practices and readability in shell scripting.
+This project showcases two different methods for generating a multiplication table using Bash scripting. It shows a modern, C-style `for` loop with a more traditional Bash `for` loop that uses the `seq` command. The goal is to demonstrate different syntactic approaches to achieve the same result, highlighting best practices and readability in shell scripting.
 
 ---
 
@@ -15,14 +15,74 @@ This project showcases two different methods for generating a multiplication tab
    ![screenshot](function/table1.png)
    ![screenshot](function/table71.png)
 
+**Traditional Style Script & Output:**
+When you run
+```
+ ./multi_table.sh
+```
+
+```
+enter a number for multiplication table
+r
+Invalid input. Please enter a positive integer.
+adduser@Honour:~$ ./multi_table.sh
+enter a number for multiplication table
+7
+Multiplication table for 7:
+---------------------------------
+7 * 1 = 7
+7 * 2 = 14
+7 * 3 = 21
+7 * 4 = 28
+7 * 5 = 35
+7 * 6 = 42
+7 * 7 = 49
+7 * 8 = 56
+7 * 9 = 63
+7 * 10 = 70
+```
 
 **C-Style Script & Output:**
 > **
+```
+----------------------------
+adduser@Honour:~$ cat multi_table.sh
+#!/bin/bash
+  echo "enter a number for multiplication table"
+  read number
 
-**Traditional Style Script & Output:**
-> **
+# Check if the input is a valid number
+if ! [[ "$number" =~ ^[0-9]+$ ]]; then
+       echo "Invalid input. Please enter a positive integer."
+       exit 1
+fi
 
+echo "Multiplication table for $number:"
+echo "---------------------------------"
 
+for i in {1..10}
+    do
+        product=$((number * i))
+        echo "$number * $i = $product"
+    done
+```
+with output: run
+```
+ ./multipl_table_cstyle.sh
+```
+```
+Enter number for the multiplication table:
+4
+enter the range(e.g., 1 to 10):
+4
+
+Multiplication Table for 4 up to 4:
+----------------------------
+4 x 1 = 4
+4 x 2 = 8
+4 x 3 = 12
+4 x 4 = 16
+```
 ##Error Handling
 ![screenshot](function/errorhandled.png)
 ![screenshot](function/cerrorhand.png)
